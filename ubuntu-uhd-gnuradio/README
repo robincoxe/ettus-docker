@@ -1,3 +1,15 @@
+Since the release of UHD v3.15.0.0 and GNU Radio v.3.8.1.0, the Ubuntu 18.04 dependencies to build from source have changed 
+and the UHD and GNU Radio documentation has not been updated accordingly (as of 2 May 2020).
+
+The path of least resistance is to undoubtedly to upgrade your PC to Ubuntu 20.04 and install UHD and GNU Radio as follows:
+sudo apt install libuhd3.15.0
+sudo apt install gnuradio
+
+However, if you would like to build from source and are running Ubuntu 18.04,  you can either use the dependencies in this 
+Dockerfile as a reference without using Docker or you could just deploy the container.
+
+HOW TO USE:
+
 Install Docker (assumes a Ubuntu Linux system):
 sudo apt install docker.io
 
