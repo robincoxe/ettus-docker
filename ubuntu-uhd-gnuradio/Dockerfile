@@ -147,7 +147,6 @@ RUN	     apt-get -y install -q \
 		python3-click \
 		python3-click-plugins 
 RUN          rm -rf /var/lib/apt/lists/*
-WORKDIR      /usr/local/src/gnuradio/build
 RUN          git clone https://github.com/EttusResearch/uhd.git /usr/local/src/uhd
 RUN          cd /usr/local/src/uhd/ && git checkout $UHD_TAG
 RUN          mkdir -p /usr/local/src/uhd/host/build
@@ -168,6 +167,7 @@ RUN	     ldconfig
 RUN	     git clone https://github.com/gnuradio/gnuradio.git /usr/local/src/gnuradio
 RUN	     cd /usr/local/src/gnuradio && git checkout $GR_TAG
 RUN	     mkdir -p /usr/local/src/gnuradio/build
+WORKDIR      /usr/local/src/gnuradio/build
 RUN	     cmake -DCMAKE_BUILD_TYPE=Release -DPYTHON_EXECUTABLE=/usr/bin/python3 -DCMAKE_INSTALL_PREFIX=/usr -DENABLE_INTERNAL_VOLK=OFF ../
 RUN	     make -j $MAKEWIDTH
 RUN	     make install
