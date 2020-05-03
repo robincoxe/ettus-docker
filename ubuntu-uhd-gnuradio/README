@@ -12,6 +12,9 @@ Create UHD/GNU Radio Docker image:
 Run the Docker Image:
 sudo docker run --rm --interactive --tty ettusresearch/ubuntu-uhd-gnuradio:latest /bin/bash
 
+List Docker Images:
+sudo docker image list
+
 How to Delete the Docker Image:
 sudo docker rmi --force ettusresearch/ubuntu-uhd-gnuradio ettusresearch/ubuntu-uhd-gnuradio
 
