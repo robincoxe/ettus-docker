@@ -1,0 +1,21 @@
+Install Docker:
+sudo apt install docker.io
+
+Start Docker:
+sudo systemctl enable --now docker
+
+Create UHD/GNU Radio Docker image:
+1) Navigate to the location where the ettus-docker/ubuntu-uhd-gnuradio/Dockerfile lives.
+2) sudo docker build -t ettusresearch/ubuntu-uhd-gnuradio ./
+3) Go for a run, bake some sourdough loaves, and have a few drinks-- this step takes a good long while. 
+
+Run Docker Image:
+sudo docker run --rm --interactive --tty ettusresearch/ubuntu-uhd-gnuradio:latest /bin/bash
+
+List Docker Images:
+sudo docker image list
+
+How to Delete the Docker Image once it has outlived its usefulness:
+sudo docker rmi --force ettusresearch/ubuntu-uhd-gnuradio ettusresearch/ubuntu-uhd-gnuradio
+
+
