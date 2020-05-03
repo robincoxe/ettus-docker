@@ -9,8 +9,13 @@ Create UHD/GNU Radio Docker image:
 2) sudo docker build -t ettusresearch/ubuntu-uhd-gnuradio ./
 3) Go for a run, bake some sourdough loaves, and have a few drinks-- this step takes a good long while. 
 
-Run the Docker Image:
+Run the Docker Image (text only):
 sudo docker run --rm --interactive --tty ettusresearch/ubuntu-uhd-gnuradio:latest /bin/bash
+
+If you'd like to use gnuradio-companion:
+On your PC: xhost local:root
+Then run the docker image:
+sudo docker run -it --rm -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY ettusresearch/ubuntu-uhd-gnuradio:latest /bin/bash
 
 List Docker Images:
 sudo docker image list
