@@ -62,18 +62,18 @@ WORKDIR      /
 COPY install_config.txt /
 
 # download and run the Vivado install
-#ARG VIVADO_TAR_HOST=host_ip:8000
-#ARG VIVADO_TAR_FILE=Xilinx_Vivado_SDK_2017.4_1216_1
-#ARG VIVADO_VERSION=2017.4
-RUN echo "Downloading Xilinx_Vivado_SDK_2017.4_1216_1 from host_ip:8000" && \
-  wget host_ip:8000/Xilinx_Vivado_SDK_2017.4_1216_1.tar.gz -q && \
+ARG VIVADO_TAR_HOST=host_ip:8000
+ARG VIVADO_TAR_FILE=Xilinx_Vivado_SDK_2017.4_1216_1
+ARG VIVADO_VERSION=2017.4
+RUN echo "Downloading ${VIVADO_TAR_FILE} from host_ip:8000" && \
+  wget ${VIVADO_TAR_HOST}/${VIVADO_TAR_FILE}.tar.gz -q && \
   echo "Extracting Vivado tar file" && \
-  tar xzf Xilinx_Vivado_SDK_2017.4_1216_1.tar.gz && \
+  tar xzf ${VIVADO_TAR_FILE}.tar.gz && \
   /${VIVADO_TAR_FILE}/xsetup --agree 3rdPartyEULA,WebTalkTerms,XilinxEULA --batch Install --config install_config.txt && \
-  rm -rf Xilinx_Vivado_SDK_2017.4_1216_1*
+  rm -rf ${VIVADO_TAR_FILE}*
 
 #add vivado tools to path (root)
-RUN echo "source /opt/Xilinx/Vivado/2017.4/settings64.sh" >> /root/.profile
+RUN echo "source /opt/Xilinx/Vivado/${VIVADO_VERSION}/settings64.sh" >> /root/.profile
 
 #copy in the license file (root)
 RUN mkdir -p /root/.Xilinx
@@ -84,7 +84,7 @@ RUN adduser --disabled-password --gecos '' vivado
 USER vivado
 WORKDIR /home/vivado
 #add vivado tools to path
-RUN echo "source /opt/Xilinx/Vivado/2017.4/settings64.sh" >> /home/vivado/.bashrc
+RUN echo "source /opt/Xilinx/Vivado/${VIVADO_VERSION}/settings64.sh" >> /home/vivado/.bashrc
 
 #copy in the license file for vivado user
 RUN mkdir /home/vivado/.Xilinx
