@@ -1,5 +1,5 @@
 #### Vivado HL WebPACK Install Configuration ####
-Edition=Vivado HL Design
+Edition=Vivado HL Design Edition
 
 # Path where Xilinx software will be installed.
 Destination=/opt/Xilinx
