@@ -65,9 +65,11 @@ COPY install_config.txt /
 ARG VIVADO_TAR_HOST=host_ip:8000
 ARG VIVADO_TAR_FILE=Xilinx_Vivado_SDK_2017.4_1216_1
 ARG VIVADO_VERSION=2017.4
-RUN echo "Downloading ${VIVADO_TAR_FILE} from host_ip:8000" && \
-  wget ${VIVADO_TAR_HOST}/${VIVADO_TAR_FILE}.tar.gz -q && \
-  echo "Extracting Vivado tar file" && \
+RUN echo "Downloading ${VIVADO_TAR_FILE} from ${VIVADO_TAR_HOST}" && \
+  wget ${VIVADO_TAR_HOST}/${VIVADO_TAR_FILE}.tar.gz -q 
+#Can copy Vivado tarball directly as an alternative to wget.
+#COPY ${VIVADO_TAR_FILE}.tar.gz /
+RUN  echo "Extracting Vivado tar file" && \
   tar xzf ${VIVADO_TAR_FILE}.tar.gz && \
   /${VIVADO_TAR_FILE}/xsetup --agree 3rdPartyEULA,WebTalkTerms,XilinxEULA --batch Install --config install_config.txt && \
   rm -rf ${VIVADO_TAR_FILE}*
