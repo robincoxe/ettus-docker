@@ -1,0 +1,37 @@
+Installs 
+Ubuntu 18.04
+Vivado 2017.4 (required for UHD-v.3.14-- yes I know, it's ancient.)
+UHD v.3.14.0.0
+
+
+HOW TO USE:
+
+Install Docker (assumes a Ubuntu Linux system):
+sudo apt install docker.io
+
+Start Docker:
+sudo systemctl enable --now docker
+
+Create UHD/GNU Radio Docker image:
+1) Navigate to the location where the ettus-docker/esc-time-capsule/Dockerfile lives.
+2) sudo docker build -t ettusresearch/esc-time-capsule ./
+3) Go for a run, bake some sourdough loaves, and have a few drinks-- this step takes a good long while. 
+
+Run the Docker Image (text only):
+sudo docker run --rm --interactive --tty ettusresearch/esc-time-capsule:latest /bin/bash
+
+If you'd like to use the Vivado GUI for some reason:
+On your PC: xhost local:root
+Then run the docker image:
+sudo docker run -it --rm -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY ettusresearch/esc-time-capsule:latest /bin/bash
+
+List Docker Images:
+sudo docker image list
+
+How to Delete the Docker Image:
+sudo docker rmi --force ettusresearch/esc-time-capsule ettusresearch/esc-time-capsule
+
+If you don't want to run Docker as sudo, consult this webpage:
+https://docs.docker.com/engine/install/linux-postinstall/
+
+
